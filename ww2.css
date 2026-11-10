@@ -25,9 +25,7 @@ body {
     font-family: var(--fonte-texto);
     font-size: 1.0625rem;
     line-height: 1.7;
-    /* grão leve de papel */
-    background-image:
-        radial-gradient(rgba(59,67,36,.05) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(59,67,36,.05) 1px, transparent 1px);
     background-size: 5px 5px;
 }
 
@@ -48,7 +46,7 @@ a { color: var(--musgo); }
 .pular-conteudo:focus { top: 12px; }
 
 /* =========================================================
-   CABEÇALHO
+   CABEÇALHO & MENU RESPONSIVO
    ========================================================= */
 header {
     position: sticky; top: 0; z-index: 50;
@@ -61,8 +59,13 @@ header {
     border-bottom: 3px solid var(--latao);
 }
 
-.titulo h1 { font-size: 1.05rem; letter-spacing: 0; }
-.titulo a { color: inherit; text-decoration: none; }
+.titulo a {
+    color: var(--papel);
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0;
+    text-decoration: none;
+}
 
 .menu ul { list-style: none; display: flex; gap: 6px; }
 
@@ -79,14 +82,34 @@ header {
 .menu a:hover { color: var(--latao); }
 .menu a.ativo { color: var(--latao); border-bottom-color: var(--latao); }
 
-/* barra de progresso de leitura */
+.btn-menu-mobile {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+}
+.linha-hamburguer {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--papel);
+    transition: transform .3s, opacity .3s;
+}
+
+.btn-menu-mobile.ativo .linha-hamburguer:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.btn-menu-mobile.ativo .linha-hamburguer:nth-child(2) { opacity: 0; }
+.btn-menu-mobile.ativo .linha-hamburguer:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
 .progresso-leitura {
     position: absolute; left: 0; bottom: -3px; height: 3px; width: 0;
     background: var(--papel);
 }
 
 /* =========================================================
-   HERO (foto + resumo)
+   HERO
    ========================================================= */
 .apresentacao {
     position: relative;
@@ -111,7 +134,6 @@ header {
     mix-blend-mode: luminosity;
     opacity: .95;
 }
-/* degradê para o texto "sair" da foto */
 .area-foto::after {
     content: ""; position: absolute; inset: 0;
     background: linear-gradient(90deg, var(--musgo-escuro) 0%, rgba(31,38,22,.55) 35%, rgba(31,38,22,0) 70%);
@@ -125,19 +147,8 @@ header {
     max-width: 760px;
 }
 
-.hero-titulo {
-    font-size: clamp(2.2rem, 5.2vw, 4.2rem);
-    margin-bottom: 20px;
-    color: var(--papel);
-}
-
-.hero-sub {
-    font-size: 1.15rem;
-    color: var(--papel-3);
-    max-width: 52ch;
-    margin-bottom: 28px;
-}
-
+.hero-titulo { font-size: clamp(2.2rem, 5.2vw, 4.2rem); margin-bottom: 20px; color: var(--papel); }
+.hero-sub { font-size: 1.15rem; color: var(--papel-3); max-width: 52ch; margin-bottom: 28px; }
 .hero-acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
 
 .btn {
@@ -156,7 +167,6 @@ header {
 .btn-secundario:hover { background: var(--latao); color: var(--musgo-escuro); }
 .btn:active { transform: translateY(1px); }
 
-/* resumo em "ofício" */
 .resumo-hero {
     background: var(--papel);
     color: var(--texto);
@@ -186,7 +196,7 @@ header {
 }
 
 /* =========================================================
-   FITA PERFURADA (assinatura visual)
+   FITA PERFURADA
    ========================================================= */
 .fita {
     height: 46px;
@@ -196,7 +206,6 @@ header {
         radial-gradient(circle, var(--musgo-escuro) 2px, transparent 2.5px);
     background-size: 26px 46px, 13px 46px;
     background-position: 6px 7px, 0 -9px;
-    /* 5 trilhas de dados + trilha de tração (menores) */
     border-top: 2px solid var(--latao-escuro);
     border-bottom: 2px solid var(--latao-escuro);
     animation: fita-entra 1.4s cubic-bezier(.2,.7,.2,1) both .3s;
@@ -221,11 +230,11 @@ header {
     gap: 0;
     position: relative;
 }
-.tl::before {   /* trilho */
+.tl::before {
     content: ""; position: absolute; left: 0; right: 0; top: 14px; height: 4px; background: var(--musgo);
 }
 .tl li { position: relative; padding: 36px 14px 0 0; }
-.tl li::before {  /* marcador */
+.tl li::before {
     content: ""; position: absolute; left: 0; top: 6px;
     width: 20px; height: 20px; border-radius: 50%;
     background: var(--papel-2); border: 4px solid var(--musgo);
@@ -234,6 +243,7 @@ header {
 .tl a { text-decoration: none; color: inherit; display: block; }
 .tl a:hover .tl-ano, .tl a:focus-visible .tl-ano { color: var(--latao-escuro); }
 .tl li:has(a:hover)::before { background: var(--latao); transform: scale(1.15); }
+.tl-ano, .tl-mes, .tl-texto { display: block; }
 .tl-ano { font-family: var(--fonte-titulo); font-size: 1.35rem; color: var(--musgo); line-height: 1.1; }
 .tl-mes { font-size: .85rem; color: var(--latao-escuro); font-weight: 600; margin-bottom: 4px; min-height: 1.3em; }
 .tl-texto { font-size: .92rem; line-height: 1.45; }
@@ -249,7 +259,18 @@ header {
 .area-artigo h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--musgo); }
 
 .subtitulo-artigo { font-size: 1.2rem; font-style: italic; margin: 10px 0 6px; max-width: 60ch; }
-.autor-artigo { font-size: .95rem; margin-bottom: 26px; color: var(--musgo-claro); }
+.autor-artigo { font-size: .95rem; margin-bottom: 12px; color: var(--musgo-claro); }
+
+.metadados-artigo { margin-bottom: 20px; }
+.tempo-leitura {
+    font-family: var(--fonte-titulo);
+    font-size: .9rem;
+    background: var(--papel-3);
+    color: var(--musgo-escuro);
+    padding: 4px 10px;
+    border-left: 4px solid var(--musgo);
+    display: inline-block;
+}
 
 .resumo-artigo {
     background: var(--papel-2);
@@ -345,7 +366,7 @@ header {
 .foto-pessoa { aspect-ratio: 3 / 4; overflow: hidden; background: var(--papel-3); border: 2px solid var(--musgo); }
 .foto-pessoa img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center;
-    filter: grayscale(1) sepia(.35) contrast(1.05);   /* três retratos, um mesmo tratamento */
+    filter: grayscale(1) sepia(.35) contrast(1.05);
     transition: filter .4s;
 }
 .cartao-pessoa:hover .foto-pessoa img { filter: grayscale(0) sepia(0); }
@@ -416,6 +437,91 @@ header {
 .quiz-acoes { margin-top: 16px; }
 
 /* =========================================================
+   ÁREA DE FEEDBACK (NOVA FUNCIONALIDADE)
+   ========================================================= */
+.area-feedback {
+    background: var(--papel-2);
+    padding: clamp(40px, 6vw, 84px) clamp(16px, 4vw, 40px);
+    border-top: 3px solid var(--musgo);
+    border-bottom: 3px solid var(--musgo);
+}
+.container-feedback {
+    max-width: 760px;
+    margin: 0 auto;
+}
+.area-feedback h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--musgo); margin-bottom: 8px; }
+.area-feedback p { margin-bottom: 24px; }
+
+.form-feedback {
+    background: var(--papel);
+    padding: 24px;
+    border: 2px solid var(--musgo);
+    box-shadow: 6px 6px 0 var(--musgo);
+    display: grid;
+    gap: 18px;
+}
+.campo-form { display: flex; flex-direction: column; gap: 6px; }
+.campo-form label { font-family: var(--fonte-titulo); font-size: .95rem; color: var(--musgo); }
+.campo-form input[type="text"],
+.campo-form textarea {
+    padding: 10px 12px;
+    border: 2px solid var(--musgo);
+    background: var(--papel-2);
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    color: var(--texto);
+}
+.campo-form input[type="text"]:focus,
+.campo-form textarea:focus {
+    background: var(--papel);
+}
+
+.avaliacao-estrelas { display: flex; gap: 8px; }
+.estrela {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--papel-3);
+    cursor: pointer;
+    transition: color .2s, transform .15s;
+    padding: 0 4px;
+}
+.estrela:hover,
+.estrela.ativa {
+    color: var(--latao-escuro);
+    transform: scale(1.15);
+}
+
+.feedback-sucesso {
+    margin-top: 20px;
+    background: #b9c58a;
+    border: 2px solid var(--musgo-escuro);
+    padding: 16px 20px;
+    color: var(--musgo-escuro);
+}
+.feedback-sucesso h3 { font-size: 1.2rem; margin-bottom: 4px; }
+
+.feedbacks-salvos { margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.item-feedback-salvo {
+    background: var(--papel);
+    border-left: 4px solid var(--latao-escuro);
+    padding: 14px 18px;
+    font-size: .95rem;
+}
+.item-feedback-salvo header {
+    position: static;
+    background: none;
+    border: none;
+    padding: 0;
+    min-height: 0;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--fonte-titulo);
+    color: var(--musgo);
+    margin-bottom: 6px;
+}
+
+/* =========================================================
    REFERÊNCIAS
    ========================================================= */
 .area-referencias {
@@ -470,10 +576,24 @@ footer p { font-family: var(--fonte-titulo); }
 }
 
 @media (max-width: 800px) {
-    :root { --header-h: 96px; }
-    header { flex-direction: column; justify-content: center; gap: 2px; padding-block: 8px; }
-    .menu ul { flex-wrap: wrap; justify-content: center; gap: 0; }
-    .menu a { padding: 6px 9px; font-size: .88rem; }
+    :root { --header-h: 60px; }
+    
+    .btn-menu-mobile { display: flex; }
+
+    .menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--musgo-escuro);
+        border-bottom: 3px solid var(--latao);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s ease-out;
+    }
+    .menu.aberto { max-height: 320px; }
+    .menu ul { flex-direction: column; gap: 0; padding: 8px 16px 16px; }
+    .menu a { padding: 10px 14px; font-size: 1rem; border-bottom: 1px solid rgba(232, 227, 207, 0.1); }
 
     .apresentacao { grid-template-columns: 1fr; min-height: 0; }
     .area-foto { grid-column: 1; grid-row: 1; height: 260px; }
