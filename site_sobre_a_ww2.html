@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História da Computação na Segunda Guerra Mundial</title>
+    <link rel="stylesheet" href="ww2.css">
+</head>
+<body>
+
+    <header>
+        <div class="titulo">
+            <h1>História da Computação na Segunda Guerra</h1>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#artigo">Artigo</a></li>
+                <li><a href="#principais-nomes">Principais Nomes</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#referencias">Referências</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="apresentacao">
+            <div class="area-foto">
+                <img src="oppenheimer.png" alt="Dois homens diante de um computador de grande porte dos anos 1940">
+            </div>
+
+            <div class="area-contexto">
+                <h2>Resumo</h2>
+                <p>Este artigo apresenta uma revisão bibliográfica narrativa de quatro trabalhos sobre a história da computação na década de 1940: uma resenha do volume sobre o Colossus e os computadores de criptoanálise de Bletchley Park, um artigo sobre a instalação de computação de Los Alamos durante o Projeto Manhattan, um artigo sobre a depuração do ENIAC e uma resenha do volume sobre o Automatic Computing Engine (ACE) de Alan Turing. Os trabalhos são comparados segundo três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração de cada máquina e o caminho até o conceito de programa armazenado. A comparação sugere que esses sistemas, construídos sob pressão militar, já enfrentavam problemas que continuam centrais na engenharia de software, como concorrência, erros notacionais e a necessidade de testar antes da entrega, e que o trabalho de operadores, programadoras e engenheiros foi decisivo em cada caso.</p>
+            </div>
+        </section>
+
+        <section id="artigo" class="area-artigo">
+            <h2>Computação sob Pressão da Guerra</h2>
+            <p class="subtitulo-artigo">Colossus, Los Alamos, ENIAC e o ACE de Turing na origem do computador moderno</p>
+            <p class="autor-artigo">Por Rafael Nascimento Lopes — Universidade do Estado do Pará (UEPA), Parauapebas, PA</p>
+
+            <div class="resumo-artigo">
+                <p>Entre 1939 e 1946, demandas militares de criptoanálise, de cálculo balístico e de projeto de armas nucleares financiaram e aceleraram o desenvolvimento de máquinas de cálculo que, poucos anos antes, existiam apenas como propostas de laboratório. Este artigo compara quatro frentes dessa história por três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração, e o caminho até o programa armazenado.</p>
+            </div>
+
+            <p class="dica-artigo">Clique em cada seção para ler. As perguntas do quiz abaixo são baseadas neste artigo.</p>
+
+            <details class="secao-artigo" open>
+                <summary>1. O Colossus e a criptoanálise em Bletchley Park</summary>
+                <p>O Colossus foi a máquina eletrônica de criptoanálise usada pela Grã-Bretanha contra a Tunny, o fluxo de dados cifrado pela máquina alemã Lorenz SZ40. Dois avanços matemáticos, de John Tiltman e William Tutte, abriram o caminho para a decifração; a máquina em si foi construída por Tommy Flowers e sua equipe no centro de pesquisa dos Correios, em Dollis Hill, e entregue a Bletchley Park em janeiro de 1944.</p>
+                <p>O sigilo foi central: os integrantes juraram não revelar o que fizeram, a existência do Colossus só foi reconhecida publicamente em 1975 e nenhum exemplar original sobreviveu. O sucesso da máquina incentivou Newman e Turing a construir computadores eletrônicos, entre eles o Pilot ACE e as máquinas de Manchester.</p>
+            </details>
+
+            <details class="secao-artigo">
+                <summary>2. A instalação de computação de Los Alamos</summary>
+                <p>Entre 1944 e 1946, Los Alamos reuniu calculadores humanos e máquinas de cartões perfurados da IBM para o Projeto Manhattan. O cálculo começou à mão, com esposas de integrantes do corpo técnico e depois membros do Corpo Auxiliar Feminino do Exército. Quando o método se mostrou insuficiente, as máquinas IBM chegaram, em 4 de abril de 1944.</p>
+                <p>Programar essas máquinas era decompor as equações em operações como somar, multiplicar e ordenar, produzindo fluxogramas e diagramas de fiação, com os cartões movidos à mão. Feynman organizou uma disputa entre calculadores humanos e máquinas: o grupo humano se cansou e as máquinas entregaram o resultado correto. Quando os operadores do Destacamento de Engenharia Especial souberam o que estavam calculando, encontraram formas de melhorar a eficiência. A maior herança, segundo Archer, foi a experiência da equipe: passaram por ali John Kemeny, Richard Hamming e Nicholas Metropolis.</p>
+            </details>
+
+            <details class="secao-artigo">
+                <summary>3. A depuração do ENIAC</summary>
+                <p>Apresentado ao público em fevereiro de 1946, o ENIAC foi construído na Universidade da Pensilvânia, sob a liderança de John Mauchly e J. Presper Eckert. Em vez de uma CPU, é um conjunto de unidades funcionais (20 acumuladores, multiplicador, divisor, tabelas de função e outros), e funciona como uma máquina de fluxo de dados, com paralelismo nas mãos do programador. A programação era física: chaves para as operações e cabos para o sequenciamento. As seis primeiras programadoras, antes calculadoras humanas, trabalharam a partir dos desenhos de engenharia.</p>
+                <p>Ao simular os exemplos do manual técnico, Stuart encontrou dois tipos de erro: os <strong>notacionais</strong>, como copiar errado um desenho ou atualizar um parâmetro em um lugar e esquecer o outro, e os de <strong>concorrência e temporização</strong>, como dois valores enviados ao mesmo tempo no mesmo canal. A máquina dispunha de três mecanismos de depuração familiares hoje: lâmpadas de néon mostrando os valores, modo de passo único e pontos de parada.</p>
+            </details>
+
+            <details class="secao-artigo">
+                <summary>4. O ACE de Turing e o programa armazenado</summary>
+                <p>Em 1945, Alan Turing elaborou o projeto do Automatic Computing Engine (ACE), baseado no princípio de controlar as operações da máquina por instruções codificadas armazenadas em sua memória. O modelo piloto executou seu primeiro programa em 10 de maio de 1950, e a versão de produção, o DEUCE, tornou-se um dos pilares da indústria britânica de computadores. Como em Los Alamos e no ENIAC, os engenheiros sofreram pressão para usar a máquina em computação séria antes de ela estar pronta.</p>
+            </details>
+
+            <details class="secao-artigo">
+                <summary>5. Comparação e implicações para a engenharia de software</summary>
+                <div class="tabela-rolavel">
+                    <table class="tabela-artigo">
+                        <thead>
+                            <tr><th>Sistema</th><th>Contexto</th><th>Programação</th><th>Legado</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Colossus (1944)</td><td>Criptoanálise da cifra Tunny</td><td>Máquina eletrônica para tarefa específica</td><td>Sigilo até 1975; estímulo a Newman e Turing</td></tr>
+                            <tr><td>Los Alamos (1944–1946)</td><td>Massa crítica e implosão</td><td>Máquinas IBM, fluxogramas e cartões à mão</td><td>Formação de pessoal; MANIAC; Laboratório Watson</td></tr>
+                            <tr><td>ENIAC (1945–1955)</td><td>Tabelas balísticas e outras aplicações</td><td>Chaves e cabos; fluxo de dados</td><td>Erros notacionais e de concorrência; depuração por passo único</td></tr>
+                            <tr><td>ACE (1945; Pilot ACE 1950)</td><td>Projeto de Turing no National Physical Laboratory</td><td>Programa armazenado na memória</td><td>DEUCE e a indústria britânica</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>Nas quatro frentes, a guerra definiu o problema e o prazo, e o sigilo teve efeitos duradouros. As formas de programar evoluíram de procedimentos manuais e fiações para o programa armazenado, mas a tarefa de verificar a correção nunca desapareceu. Os erros notacionais, a concorrência e os testes insuficientes, já presentes nos primeiros programas, continuam centrais na engenharia de software. Essas conexões são leituras interpretativas das fontes, não afirmações de todos os autores.</p>
+            </details>
+        </section>
+
+        <section id="principais-nomes" class="area-nomes">
+            <h2>Principais Nomes</h2>
+            <div class="galeria-nomes">
+
+                <div class="cartao-pessoa">
+                    <div class="foto-pessoa">
+                        <img src="Alan_turing.png" alt="Retrato de Alan Turing">
+                    </div>
+                    <h3>Alan Turing</h3>
+                    <details class="ver-mais">
+                        <summary>Ver mais</summary>
+                        <p>Matemático britânico fundamental na quebra da máquina Enigma. Criou a "Máquina de Turing" e é considerado o pai da ciência da computação.</p>
+                    </details>
+                </div>
+
+                <div class="cartao-pessoa">
+                    <div class="foto-pessoa">
+                        <img src="Tommy_flowers.png" alt="Retrato de Tommy Flowers">
+                    </div>
+                    <h3>Tommy Flowers</h3>
+                    <details class="ver-mais">
+                        <summary>Ver mais</summary>
+                        <p>Engenheiro dos correios britânicos que projetou e construiu o Colossus, máquina eletrônica de criptoanálise entregue a Bletchley Park em janeiro de 1944.</p>
+                    </details>
+                </div>
+
+                <div class="cartao-pessoa">
+                    <div class="foto-pessoa">
+                        <img src="Grace_hoppers.png" alt="Retrato de Grace Hopper">
+                    </div>
+                    <h3>Grace Hopper</h3>
+                    <details class="ver-mais">
+                        <summary>Ver mais</summary>
+                        <p>Pioneira da programação, trabalhou no computador Harvard Mark I e mais tarde desenvolveu o primeiro compilador para linguagens de programação.</p>
+                    </details>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="quiz" class="area-quiz">
+            <h2>Teste seus conhecimentos</h2>
+            <!-- O quiz é montado pelo script.js -->
+            <div id="quiz-container"></div>
+        </section>
+
+        <section id="referencias" class="area-referencias">
+            <h2>Fontes e Referências</h2>
+            <ul>
+                <li>Agar, J. (2006). Secret giants. <em>Nature</em>, 442:746.</li>
+                <li>Anderson, D. (2008). Book review: Alan Turing's Automatic Computing Engine. <em>History and Philosophy of Logic</em>, 29(4):389–396.</li>
+                <li>Archer, B. J. (2021). The Los Alamos computing facility during the Manhattan Project. <em>Nuclear Technology</em>, 207(sup1):S190–S203.</li>
+                <li>Copeland, B. J., ed. (2005). <em>Alan Turing's Automatic Computing Engine</em>. Oxford University Press.</li>
+                <li>Copeland, B. J., ed. (2006). <em>Colossus: The Secrets of Bletchley Park's Codebreaking Computers</em>. Oxford University Press.</li>
+                <li>Kidwell, P. A. (2007). Colossus: The secrets of Bletchley Park's codebreaking computers (review). <em>Technology and Culture</em>.</li>
+                <li>Stuart, B. L. (2018). Debugging the ENIAC. <em>Proceedings of the IEEE</em>, 106(12):2331–2345.</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+<footer>
+    <p>Desenvolvido por:</p>
+    <ul class="links-github">
+        <li>
+            <a href="https://github.com/lucaxx-creator" target="_blank" rel="noopener">
+                Lucas Valério <span>GitHub</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/JOY-30-BOT" target="_blank" rel="noopener">
+                Rafael Lopes <span>GitHub</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/queirozamq" target="_blank" rel="noopener">
+                Arthur Queiroz <span>GitHub</span>
+            </a>
+        </li>
+    </ul>
+</footer>
+
+
+</body>
+</html>

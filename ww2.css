@@ -1,0 +1,471 @@
+/* Configurações gerais da página */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #e5e3d7;
+    color: #2c3021;
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+header {
+    background-color: #3b4324;
+    color: #f4f1e1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 5px solid #232815;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    color: #f4f1e1;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #a8b37e;
+}
+
+/* =========================================
+   APRESENTAÇÃO (Foto + Resumo)
+   ========================================= */
+.apresentacao {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    align-items: stretch; /* foto e caixa de texto com a mesma altura */
+}
+
+/* A foto fica "solta" dentro da caixa (position absolute),
+   então ela se ajusta à altura da caixa de texto */
+.area-foto {
+    flex: 1;
+    position: relative;
+    min-height: 300px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #232815;
+    border: 3px solid #3b4324;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px #3b4324;
+}
+
+.area-foto img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.area-contexto {
+    flex: 1;
+    background-color: #d6d3c4;
+    padding: 30px;
+    border: 3px solid #3b4324;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px #3b4324;
+}
+
+.area-contexto h2 {
+    margin-bottom: 15px;
+    color: #3b4324;
+    border-bottom: 2px dashed #3b4324;
+    padding-bottom: 5px;
+}
+
+/* =========================================
+   PRINCIPAIS NOMES
+   ========================================= */
+.area-nomes {
+    padding: 40px;
+    background-color: #3b4324;
+    color: #e5e3d7;
+}
+
+.area-nomes h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.galeria-nomes {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: stretch; /* cartões com a mesma altura */
+}
+
+.cartao-pessoa {
+    flex: 1;
+    background-color: #e5e3d7;
+    color: #2c3021;
+    border: 3px solid #232815;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+    box-shadow: 4px 4px 0px #232815;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Nome da pessoa (se não for h3 ou p, troque aqui) */
+.cartao-pessoa > h3,
+.cartao-pessoa > p {
+    margin: 12px 0;
+}
+
+.foto-pessoa {
+    aspect-ratio: 3 / 4;   /* proporção de retrato, no lugar de height: 320px */
+    padding: 0;
+    overflow: hidden;
+    display: block;
+    background-color: #c4c1af;
+    border: 2px solid #3b4324;
+}
+
+.foto-pessoa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center; /* mantém o rosto visível */
+    display: block;
+    filter: sepia(0.25) contrast(1.05);
+}
+
+/* Botão "Ver Mais" (details) */
+.ver-mais {
+    margin-top: auto; /* prende o botão embaixo do cartão */
+    text-align: left;
+    background-color: #d6d3c4;
+    padding: 10px;
+    border: 1px solid #3b4324;
+    border-radius: 4px;
+}
+
+.ver-mais summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: #3b4324;
+}
+
+.ver-mais p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   QUIZ E REFERÊNCIAS
+   ========================================= */
+.area-quiz, .area-referencias {
+    padding: 40px;
+}
+
+.area-quiz h2, .area-referencias h2 {
+    color: #3b4324;
+    margin-bottom: 20px;
+}
+
+.pergunta {
+    background-color: #d6d3c4;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid #3b4324;
+}
+
+.pergunta p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.btn-enviar {
+    background-color: #3b4324;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px #232815;
+    transition: background-color 0.2s;
+}
+
+.btn-enviar:hover {
+    background-color: #4b5320;
+}
+
+.area-referencias ul {
+    list-style-type: square;
+    padding-left: 20px;
+}
+
+.area-referencias a {
+    color: #3b4324;
+    font-weight: bold;
+}
+
+/* =========================================
+   QUIZ INTERATIVO
+   ========================================= */
+.quiz-progresso {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #3b4324;
+}
+
+.barra {
+    height: 8px;
+    background: #c4c1af;
+    border: 1px solid #3b4324;
+    margin-bottom: 20px;
+}
+
+.barra-preenchida {
+    height: 100%;
+    width: 0;
+    background: #3b4324;
+    transition: width 0.4s;
+}
+
+.quiz-pergunta {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.opcao {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #e5e3d7;
+    color: #2c3021;
+    border: 2px solid #3b4324;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #232815;
+    transition: background-color 0.2s;
+}
+
+.opcao:hover:not(:disabled) {
+    background: #a8b37e;
+}
+
+.opcao:disabled {
+    cursor: default;
+}
+
+.opcao.correta {
+    background: #a8b37e;
+    border-color: #232815;
+    font-weight: bold;
+}
+
+.opcao.errada {
+    background: #d9a79b;
+    border-color: #7a2e1f;
+}
+
+.explicacao {
+    margin-top: 10px;
+    padding: 12px;
+    background: #e5e3d7;
+    border-left: 5px solid #3b4324;
+}
+
+.quiz-acoes {
+    margin-top: 15px;
+}
+
+.resultado-final {
+    text-align: center;
+    padding: 20px;
+}
+
+.resultado-final h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.quiz-topo {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: #e5e3d7;
+    padding: 10px 0;
+}
+
+.pergunta .quiz-pergunta {
+    margin-bottom: 12px;
+}
+
+/* =========================================
+   ARTIGO
+   ========================================= */
+.area-artigo {
+    padding: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.area-artigo h2 {
+    color: #3b4324;
+    font-size: 2rem;
+}
+
+.subtitulo-artigo {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.autor-artigo {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    color: #4b5320;
+}
+
+.resumo-artigo {
+    background-color: #d6d3c4;
+    border-left: 5px solid #3b4324;
+    padding: 20px;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.dica-artigo {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.secao-artigo {
+    background-color: #d6d3c4;
+    border: 3px solid #3b4324;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 #3b4324;
+    margin-bottom: 18px;
+    padding: 0;
+}
+
+.secao-artigo summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 14px 18px;
+    background-color: #3b4324;
+    color: #f4f1e1;
+}
+
+.secao-artigo summary:hover {
+    background-color: #4b5320;
+}
+
+.secao-artigo p {
+    padding: 14px 18px 0;
+    line-height: 1.65;
+}
+
+.secao-artigo p:last-child {
+    padding-bottom: 18px;
+}
+
+.tabela-rolavel {
+    overflow-x: auto;
+    padding: 14px 18px 0;
+}
+
+.tabela-artigo {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    background: #e5e3d7;
+}
+
+.tabela-artigo th, .tabela-artigo td {
+    border: 1px solid #3b4324;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tabela-artigo th {
+    background-color: #a8b37e;
+}
+/* =========================================
+   RODAPÉ
+   ========================================= */
+footer {
+    background-color: #3b4324;
+    color: #f4f1e1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-top: 5px solid #232815;
+}
+
+.links-github {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.links-github a {
+    display: inline-flex;     /* nome e etiqueta lado a lado */
+    align-items: center;      /* centraliza na vertical */
+    color: #f4f1e1;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+.links-github a:hover {
+    color: #a8b37e;
+}
+
+/* Etiqueta "GitHub" ao lado do nome */
+.links-github span {
+    background-color: #232815;
+    color: #a8b37e;
+    font-size: 0.7rem;
+    line-height: 1;           /* tira o espaço extra de cima/baixo */
+    padding: 4px 6px;
+    border-radius: 3px;
+    margin-left: 8px;
+}
+/* =========================================
+   RESPONSIVO (sempre por último)
+   ========================================= */
+@media (max-width: 800px) {
+    header { flex-direction: column; gap: 10px; }
+    .menu ul { flex-wrap: wrap; justify-content: center; }
+    .apresentacao, .galeria-nomes { flex-direction: column; }
+    .area-foto { min-height: 260px; }
+    footer { flex-direction: column; gap: 10px; }
+    .links-github { flex-wrap: wrap; justify-content: center; }
+
+}
