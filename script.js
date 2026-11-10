@@ -1,9 +1,3 @@
-// =========================================
-// QUIZ INTERATIVO - todas as perguntas aparecem de uma vez
-// Perguntas baseadas no artigo "Computação sob Pressão da Guerra".
-// Para trocar as perguntas, edite apenas o array "perguntas" (máx. 5).
-// "correta" é o índice (começando em 0) da alternativa certa.
-// =========================================
 const perguntas = [
     {
         texto: "Em que ano a existência do Colossus foi reconhecida publicamente?",
@@ -114,7 +108,7 @@ function responder(qi, oi) {
     });
 
     document.getElementById("feedback-" + qi).innerHTML =
-        `<div class="explicacao"><strong>${acertou ? "Correto!" : "Incorreto."}</strong> ${p.explicacao}</div>`;
+        `<div class="explicacao ${acertou ? "certo" : "erro"}"><strong>${acertou ? "Correto!" : "Incorreto."}</strong> ${p.explicacao}</div>`;
 
     atualizarProgresso();
 
@@ -155,3 +149,70 @@ function mostrarResultado() {
 }
 
 montarQuiz();
+
+
+// =========================================
+// INTERAÇÕES DO SITE
+// =========================================
+
+// 1) Barra de progresso de leitura (topo do cabeçalho)
+const barraLeitura = document.getElementById("progresso-leitura");
+function atualizarLeitura() {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    barraLeitura.style.width = pct + "%";
+}
+window.addEventListener("scroll", atualizarLeitura, { passive: true });
+atualizarLeitura();
+
+// 2) Link ativo no menu conforme a seção visível
+const linksMenu = document.querySelectorAll(".menu a");
+const secoes = [...linksMenu].map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
+const observador = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+        if (!e.isIntersecting) return;
+        linksMenu.forEach(a => a.classList.toggle("ativo", a.getAttribute("href") === "#" + e.target.id));
+    });
+}, { rootMargin: "-45% 0px -50% 0px" });
+secoes.forEach(sec => observador.observe(sec));
+
+// 3) Resumo do hero: expandir / recolher
+const resumoHero = document.getElementById("resumo-hero");
+const btnResumo = document.getElementById("btn-resumo");
+btnResumo.addEventListener("click", () => {
+    const aberto = resumoHero.classList.toggle("aberto");
+    btnResumo.textContent = aberto ? "Recolher resumo" : "Ler resumo completo";
+    btnResumo.setAttribute("aria-expanded", aberto);
+});
+
+// 4) Linha do tempo: abre a seção do artigo ao clicar no marco
+document.querySelectorAll(".tl a").forEach(link => {
+    link.addEventListener("click", () => {
+        const alvo = document.querySelector(link.getAttribute("href"));
+        if (alvo && alvo.tagName === "DETAILS") alvo.open = true;
+    });
+});
+
+// 5) Abrir / fechar todas as seções do artigo
+const secoesArtigo = document.querySelectorAll(".secao-artigo");
+const btnTudo = document.getElementById("btn-abrir-tudo");
+function atualizarBotaoTudo() {
+    const todasAbertas = [...secoesArtigo].every(d => d.open);
+    btnTudo.textContent = todasAbertas ? "Fechar todas" : "Abrir todas";
+}
+btnTudo.addEventListener("click", () => {
+    const abrir = ![...secoesArtigo].every(d => d.open);
+    secoesArtigo.forEach(d => d.open = abrir);
+    atualizarBotaoTudo();
+});
+secoesArtigo.forEach(d => d.addEventListener("toggle", atualizarBotaoTudo));
+atualizarBotaoTudo();
+
+// 6) Mede a altura real do cabeçalho (muda no celular, quando o menu quebra linha)
+const cabecalho = document.querySelector("header");
+function medirCabecalho() {
+    document.documentElement.style.setProperty("--header-h", cabecalho.offsetHeight + "px");
+}
+window.addEventListener("resize", medirCabecalho);
+window.addEventListener("load", medirCabecalho);
+medirCabecalho();
