@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colossus, Los Alamos, ENIAC e o ACE de Turing: como a pressão da guerra acelerou a origem do computador moderno.">
+    <meta name="theme-color" content="#1f2616">
     <title>História da Computação na Segunda Guerra Mundial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="ww2.css">
 </head>
 <body>
+    <a class="pular-conteudo" href="#artigo">Pular para o artigo</a>
 
     <header>
         <div class="titulo">
-            <h1>História da Computação na Segunda Guerra</h1>
+            <a href="#home"><strong>Computação na Guerra</strong></a>
         </div>
-        <nav class="menu">
+        <nav class="menu" aria-label="Seções do site">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#artigo">Artigo</a></li>
@@ -21,18 +27,43 @@
                 <li><a href="#referencias">Referências</a></li>
             </ul>
         </nav>
+        <div class="progresso-leitura" id="progresso-leitura" aria-hidden="true"></div>
     </header>
 
     <main>
         <section id="home" class="apresentacao">
             <div class="area-foto">
-                <img src="oppenheimer.png" alt="Dois homens diante de um computador de grande porte dos anos 1940">
+                <img src="oppenheimer.png" width="494" height="394" alt="Dois homens diante de um computador de grande porte dos anos 1940">
             </div>
 
             <div class="area-contexto">
-                <h2>Resumo</h2>
-                <p>Este artigo apresenta uma revisão bibliográfica narrativa de quatro trabalhos sobre a história da computação na década de 1940: uma resenha do volume sobre o Colossus e os computadores de criptoanálise de Bletchley Park, um artigo sobre a instalação de computação de Los Alamos durante o Projeto Manhattan, um artigo sobre a depuração do ENIAC e uma resenha do volume sobre o Automatic Computing Engine (ACE) de Alan Turing. Os trabalhos são comparados segundo três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração de cada máquina e o caminho até o conceito de programa armazenado. A comparação sugere que esses sistemas, construídos sob pressão militar, já enfrentavam problemas que continuam centrais na engenharia de software, como concorrência, erros notacionais e a necessidade de testar antes da entrega, e que o trabalho de operadores, programadoras e engenheiros foi decisivo em cada caso.</p>
+                <h1 class="hero-titulo">História da Computação na Segunda Guerra</h1>
+                <p class="hero-sub">Colossus, Los Alamos, ENIAC e o ACE de Turing na origem do computador moderno.</p>
+                <div class="hero-acoes">
+                    <a class="btn btn-principal" href="#artigo">Ler o artigo</a>
+                    <a class="btn btn-secundario" href="#quiz">Fazer o quiz</a>
+                </div>
+                <div class="resumo-hero" id="resumo-hero">
+                    <h2>Resumo</h2>
+                    <p>Este artigo apresenta uma revisão bibliográfica narrativa de quatro trabalhos sobre a história da computação na década de 1940: uma resenha do volume sobre o Colossus e os computadores de criptoanálise de Bletchley Park, um artigo sobre a instalação de computação de Los Alamos durante o Projeto Manhattan, um artigo sobre a depuração do ENIAC e uma resenha do volume sobre o Automatic Computing Engine (ACE) de Alan Turing. Os trabalhos são comparados segundo três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração de cada máquina e o caminho até o conceito de programa armazenado. A comparação sugere que esses sistemas, construídos sob pressão militar, já enfrentavam problemas que continuam centrais na engenharia de software, como concorrência, erros notacionais e a necessidade de testar antes da entrega, e que o trabalho de operadores, programadoras e engenheiros foi decisivo em cada caso.</p>
+                </div>
+                <button type="button" class="btn-resumo" id="btn-resumo" aria-expanded="false" aria-controls="resumo-hero">Ler resumo completo</button>
             </div>
+        </section>
+
+        <div class="fita" aria-hidden="true"></div>
+
+        <section class="linha-tempo" aria-labelledby="titulo-tl">
+            <h2 id="titulo-tl">Linha do tempo</h2>
+            <p>Os marcos citados no artigo, em ordem cronológica. Clique em um deles para abrir a seção correspondente.</p>
+            <ol class="tl">
+                <li><a href="#sec-colossus"><div class="tl-ano">1944</div><div class="tl-mes">janeiro</div><div class="tl-texto">Colossus é entregue a Bletchley Park.</div></a></li>
+                <li><a href="#sec-losalamos"><div class="tl-ano">1944</div><div class="tl-mes">4 de abril</div><div class="tl-texto">Máquinas IBM chegam a Los Alamos.</div></a></li>
+                <li><a href="#sec-ace"><div class="tl-ano">1945</div><div class="tl-mes"></div><div class="tl-texto">Turing elabora o projeto do ACE.</div></a></li>
+                <li><a href="#sec-eniac"><div class="tl-ano">1946</div><div class="tl-mes">fevereiro</div><div class="tl-texto">ENIAC é apresentado ao público.</div></a></li>
+                <li><a href="#sec-ace"><div class="tl-ano">1950</div><div class="tl-mes">10 de maio</div><div class="tl-texto">O Pilot ACE executa seu primeiro programa.</div></a></li>
+                <li><a href="#sec-colossus"><div class="tl-ano">1975</div><div class="tl-mes"></div><div class="tl-texto">A existência do Colossus é reconhecida publicamente.</div></a></li>
+            </ol>
         </section>
 
         <section id="artigo" class="area-artigo">
@@ -44,32 +75,35 @@
                 <p>Entre 1939 e 1946, demandas militares de criptoanálise, de cálculo balístico e de projeto de armas nucleares financiaram e aceleraram o desenvolvimento de máquinas de cálculo que, poucos anos antes, existiam apenas como propostas de laboratório. Este artigo compara quatro frentes dessa história por três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração, e o caminho até o programa armazenado.</p>
             </div>
 
-            <p class="dica-artigo">Clique em cada seção para ler. As perguntas do quiz abaixo são baseadas neste artigo.</p>
+            <div class="barra-artigo">
+                <p class="dica-artigo">Clique em cada seção para ler. As perguntas do quiz abaixo são baseadas neste artigo.</p>
+                <button type="button" class="btn-abrir-tudo" id="btn-abrir-tudo">Abrir todas</button>
+            </div>
 
-            <details class="secao-artigo" open>
+            <details class="secao-artigo" id="sec-colossus" open>
                 <summary>1. O Colossus e a criptoanálise em Bletchley Park</summary>
                 <p>O Colossus foi a máquina eletrônica de criptoanálise usada pela Grã-Bretanha contra a Tunny, o fluxo de dados cifrado pela máquina alemã Lorenz SZ40. Dois avanços matemáticos, de John Tiltman e William Tutte, abriram o caminho para a decifração; a máquina em si foi construída por Tommy Flowers e sua equipe no centro de pesquisa dos Correios, em Dollis Hill, e entregue a Bletchley Park em janeiro de 1944.</p>
                 <p>O sigilo foi central: os integrantes juraram não revelar o que fizeram, a existência do Colossus só foi reconhecida publicamente em 1975 e nenhum exemplar original sobreviveu. O sucesso da máquina incentivou Newman e Turing a construir computadores eletrônicos, entre eles o Pilot ACE e as máquinas de Manchester.</p>
             </details>
 
-            <details class="secao-artigo">
+            <details class="secao-artigo" id="sec-losalamos">
                 <summary>2. A instalação de computação de Los Alamos</summary>
                 <p>Entre 1944 e 1946, Los Alamos reuniu calculadores humanos e máquinas de cartões perfurados da IBM para o Projeto Manhattan. O cálculo começou à mão, com esposas de integrantes do corpo técnico e depois membros do Corpo Auxiliar Feminino do Exército. Quando o método se mostrou insuficiente, as máquinas IBM chegaram, em 4 de abril de 1944.</p>
                 <p>Programar essas máquinas era decompor as equações em operações como somar, multiplicar e ordenar, produzindo fluxogramas e diagramas de fiação, com os cartões movidos à mão. Feynman organizou uma disputa entre calculadores humanos e máquinas: o grupo humano se cansou e as máquinas entregaram o resultado correto. Quando os operadores do Destacamento de Engenharia Especial souberam o que estavam calculando, encontraram formas de melhorar a eficiência. A maior herança, segundo Archer, foi a experiência da equipe: passaram por ali John Kemeny, Richard Hamming e Nicholas Metropolis.</p>
             </details>
 
-            <details class="secao-artigo">
+            <details class="secao-artigo" id="sec-eniac">
                 <summary>3. A depuração do ENIAC</summary>
                 <p>Apresentado ao público em fevereiro de 1946, o ENIAC foi construído na Universidade da Pensilvânia, sob a liderança de John Mauchly e J. Presper Eckert. Em vez de uma CPU, é um conjunto de unidades funcionais (20 acumuladores, multiplicador, divisor, tabelas de função e outros), e funciona como uma máquina de fluxo de dados, com paralelismo nas mãos do programador. A programação era física: chaves para as operações e cabos para o sequenciamento. As seis primeiras programadoras, antes calculadoras humanas, trabalharam a partir dos desenhos de engenharia.</p>
                 <p>Ao simular os exemplos do manual técnico, Stuart encontrou dois tipos de erro: os <strong>notacionais</strong>, como copiar errado um desenho ou atualizar um parâmetro em um lugar e esquecer o outro, e os de <strong>concorrência e temporização</strong>, como dois valores enviados ao mesmo tempo no mesmo canal. A máquina dispunha de três mecanismos de depuração familiares hoje: lâmpadas de néon mostrando os valores, modo de passo único e pontos de parada.</p>
             </details>
 
-            <details class="secao-artigo">
+            <details class="secao-artigo" id="sec-ace">
                 <summary>4. O ACE de Turing e o programa armazenado</summary>
                 <p>Em 1945, Alan Turing elaborou o projeto do Automatic Computing Engine (ACE), baseado no princípio de controlar as operações da máquina por instruções codificadas armazenadas em sua memória. O modelo piloto executou seu primeiro programa em 10 de maio de 1950, e a versão de produção, o DEUCE, tornou-se um dos pilares da indústria britânica de computadores. Como em Los Alamos e no ENIAC, os engenheiros sofreram pressão para usar a máquina em computação séria antes de ela estar pronta.</p>
             </details>
 
-            <details class="secao-artigo">
+            <details class="secao-artigo" id="sec-comparacao">
                 <summary>5. Comparação e implicações para a engenharia de software</summary>
                 <div class="tabela-rolavel">
                     <table class="tabela-artigo">
@@ -94,7 +128,7 @@
 
                 <div class="cartao-pessoa">
                     <div class="foto-pessoa">
-                        <img src="Alan_turing.png" alt="Retrato de Alan Turing">
+                        <img src="Alan_turing.png" width="554" height="734" loading="lazy" alt="Retrato de Alan Turing">
                     </div>
                     <h3>Alan Turing</h3>
                     <details class="ver-mais">
@@ -105,7 +139,7 @@
 
                 <div class="cartao-pessoa">
                     <div class="foto-pessoa">
-                        <img src="Tommy_flowers.png" alt="Retrato de Tommy Flowers">
+                        <img src="Tommy_flowers.png" width="499" height="707" loading="lazy" alt="Retrato de Tommy Flowers">
                     </div>
                     <h3>Tommy Flowers</h3>
                     <details class="ver-mais">
@@ -116,7 +150,7 @@
 
                 <div class="cartao-pessoa">
                     <div class="foto-pessoa">
-                        <img src="Grace_hoppers.png" alt="Retrato de Grace Hopper">
+                        <img src="Grace_hoppers.png" width="527" height="651" loading="lazy" alt="Retrato de Grace Hopper">
                     </div>
                     <h3>Grace Hopper</h3>
                     <details class="ver-mais">
@@ -149,9 +183,7 @@
 
     </main>
 
-    <script src="script.js"></script>
-
-<footer>
+    <footer>
     <p>Desenvolvido por:</p>
     <ul class="links-github">
         <li>
@@ -172,6 +204,6 @@
     </ul>
 </footer>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
