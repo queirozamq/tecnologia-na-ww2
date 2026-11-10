@@ -18,12 +18,20 @@
         <div class="titulo">
             <a href="#home"><strong>Computação na Guerra</strong></a>
         </div>
-        <nav class="menu" aria-label="Seções do site">
+        
+        <button type="button" class="btn-menu-mobile" id="btn-menu-mobile" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <span class="linha-hamburguer"></span>
+            <span class="linha-hamburguer"></span>
+            <span class="linha-hamburguer"></span>
+        </button>
+
+        <nav class="menu" id="menu-principal" aria-label="Seções do site">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#artigo">Artigo</a></li>
                 <li><a href="#principais-nomes">Principais Nomes</a></li>
                 <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#feedback">Feedback</a></li>
                 <li><a href="#referencias">Referências</a></li>
             </ul>
         </nav>
@@ -57,12 +65,12 @@
             <h2 id="titulo-tl">Linha do tempo</h2>
             <p>Os marcos citados no artigo, em ordem cronológica. Clique em um deles para abrir a seção correspondente.</p>
             <ol class="tl">
-                <li><a href="#sec-colossus"><div class="tl-ano">1944</div><div class="tl-mes">janeiro</div><div class="tl-texto">Colossus é entregue a Bletchley Park.</div></a></li>
-                <li><a href="#sec-losalamos"><div class="tl-ano">1944</div><div class="tl-mes">4 de abril</div><div class="tl-texto">Máquinas IBM chegam a Los Alamos.</div></a></li>
-                <li><a href="#sec-ace"><div class="tl-ano">1945</div><div class="tl-mes"></div><div class="tl-texto">Turing elabora o projeto do ACE.</div></a></li>
-                <li><a href="#sec-eniac"><div class="tl-ano">1946</div><div class="tl-mes">fevereiro</div><div class="tl-texto">ENIAC é apresentado ao público.</div></a></li>
-                <li><a href="#sec-ace"><div class="tl-ano">1950</div><div class="tl-mes">10 de maio</div><div class="tl-texto">O Pilot ACE executa seu primeiro programa.</div></a></li>
-                <li><a href="#sec-colossus"><div class="tl-ano">1975</div><div class="tl-mes"></div><div class="tl-texto">A existência do Colossus é reconhecida publicamente.</div></a></li>
+                <li><a href="#sec-colossus"><span class="tl-ano">1944</span><span class="tl-mes">janeiro</span><span class="tl-texto">Colossus é entregue a Bletchley Park.</span></a></li>
+                <li><a href="#sec-losalamos"><span class="tl-ano">1944</span><span class="tl-mes">4 de abril</span><span class="tl-texto">Máquinas IBM chegam a Los Alamos.</span></a></li>
+                <li><a href="#sec-ace"><span class="tl-ano">1945</span><span class="tl-mes"></span><span class="tl-texto">Turing elabora o projeto do ACE.</span></a></li>
+                <li><a href="#sec-eniac"><span class="tl-ano">1946</span><span class="tl-mes">fevereiro</span><span class="tl-texto">ENIAC é apresentado ao público.</span></a></li>
+                <li><a href="#sec-ace"><span class="tl-ano">1950</span><span class="tl-mes">10 de maio</span><span class="tl-texto">O Pilot ACE executa seu primeiro programa.</span></a></li>
+                <li><a href="#sec-colossus"><span class="tl-ano">1975</span><span class="tl-mes"></span><span class="tl-texto">A existência do Colossus é reconhecida publicamente.</span></a></li>
             </ol>
         </section>
 
@@ -70,6 +78,10 @@
             <h2>Computação sob Pressão da Guerra</h2>
             <p class="subtitulo-artigo">Colossus, Los Alamos, ENIAC e o ACE de Turing na origem do computador moderno</p>
             <p class="autor-artigo">Por Rafael Nascimento Lopes — Universidade do Estado do Pará (UEPA), Parauapebas, PA</p>
+            
+            <div class="metadados-artigo">
+                <span class="tempo-leitura" id="tempo-leitura">⏱ Tempo estimado de leitura: lendo...</span>
+            </div>
 
             <div class="resumo-artigo">
                 <p>Entre 1939 e 1946, demandas militares de criptoanálise, de cálculo balístico e de projeto de armas nucleares financiaram e aceleraram o desenvolvimento de máquinas de cálculo que, poucos anos antes, existiam apenas como propostas de laboratório. Este artigo compara quatro frentes dessa história por três eixos: a influência da demanda militar e do sigilo, as formas de programação e depuração, e o caminho até o programa armazenado.</p>
@@ -94,7 +106,7 @@
 
             <details class="secao-artigo" id="sec-eniac">
                 <summary>3. A depuração do ENIAC</summary>
-                <p>Apresentado ao público em fevereiro de 1946, o ENIAC foi construído na Universidade da Pensilvânia, sob a liderança de John Mauchly e J. Presper Eckert. Em vez de uma CPU, é um conjunto de unidades funcionais (20 acumuladores, multiplicador, divisor, tabelas de função e outros), e funciona como uma máquina de fluxo de dados, com paralelismo nas mãos do programador. A programação era física: chaves para as operações e cabos para o sequenciamento. As seis primeiras programadoras, antes calculadoras humanas, trabalharam a partir dos desenhos de engenharia.</p>
+                <p>Apresentado ao público em fevereiro de 1946, o ENIAC foi construído na Universidade da Pensilvânia, sob a liderança de John Mauchly e J. Presper Eckert. Em vez de uma CPU, é um conjunto de unidades funcionais (20 acumuladores, multiplicador, divisor, tabelas de função e outros), e funciona como uma máquina de fluxo de dados, com paralelismo nas mãos do programador. A programação era física: chaves para as operações e cabos para o sequenciamento. As primeiras programadoras, antes calculadoras humanas, trabalharam a partir dos desenhos de engenharia.</p>
                 <p>Ao simular os exemplos do manual técnico, Stuart encontrou dois tipos de erro: os <strong>notacionais</strong>, como copiar errado um desenho ou atualizar um parâmetro em um lugar e esquecer o outro, e os de <strong>concorrência e temporização</strong>, como dois valores enviados ao mesmo tempo no mesmo canal. A máquina dispunha de três mecanismos de depuração familiares hoje: lâmpadas de néon mostrando os valores, modo de passo único e pontos de parada.</p>
             </details>
 
@@ -164,8 +176,46 @@
 
         <section id="quiz" class="area-quiz">
             <h2>Teste seus conhecimentos</h2>
-            <!-- O quiz é montado pelo script.js -->
             <div id="quiz-container"></div>
+        </section>
+
+        <section id="feedback" class="area-feedback">
+            <div class="container-feedback">
+                <h2>Envie seu Feedback</h2>
+                <p>Sua opinião ajuda a melhorar este projeto. Avalie a página e deixe suas sugestões.</p>
+
+                <form id="form-feedback" class="form-feedback">
+                    <div class="campo-form">
+                        <label for="nome-feedback">Nome (opcional):</label>
+                        <input type="text" id="nome-feedback" placeholder="Seu nome">
+                    </div>
+
+                    <div class="campo-form">
+                        <label>Sua avaliação:</label>
+                        <div class="avaliacao-estrelas" id="avaliacao-estrelas" role="radiogroup" aria-label="Avaliação por estrelas">
+                            <button type="button" class="estrela" data-valor="1" aria-label="1 estrela">★</button>
+                            <button type="button" class="estrela" data-valor="2" aria-label="2 estrelas">★</button>
+                            <button type="button" class="estrela" data-valor="3" aria-label="3 estrelas">★</button>
+                            <button type="button" class="estrela" data-valor="4" aria-label="4 estrelas">★</button>
+                            <button type="button" class="estrela" data-valor="5" aria-label="5 estrelas">★</button>
+                        </div>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="mensagem-feedback">Comentário ou sugestão:*</label>
+                        <textarea id="mensagem-feedback" rows="4" required placeholder="Escreva aqui seu feedback sobre o artigo ou a plataforma..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-principal">Enviar Feedback</button>
+                </form>
+
+                <div id="feedback-mensagem-sucesso" class="feedback-sucesso" hidden>
+                    <h3>Obrigado pelo seu comentário!</h3>
+                    <p>Seu feedback foi registrado com sucesso e salvo localmente.</p>
+                </div>
+
+                <div id="lista-feedbacks-salvos" class="feedbacks-salvos"></div>
+            </div>
         </section>
 
         <section id="referencias" class="area-referencias">
@@ -184,25 +234,25 @@
     </main>
 
     <footer>
-    <p>Desenvolvido por:</p>
-    <ul class="links-github">
-        <li>
-            <a href="https://github.com/lucaxx-creator" target="_blank" rel="noopener">
-                Lucas Valério <span>GitHub</span>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/JOY-30-BOT" target="_blank" rel="noopener">
-                Rafael Lopes <span>GitHub</span>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/queirozamq" target="_blank" rel="noopener">
-                Arthur Queiroz <span>GitHub</span>
-            </a>
-        </li>
-    </ul>
-</footer>
+        <p>Desenvolvido por:</p>
+        <ul class="links-github">
+            <li>
+                <a href="https://github.com/lucaxx-creator" target="_blank" rel="noopener">
+                    Lucas Valério <span>GitHub</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/JOY-30-BOT" target="_blank" rel="noopener">
+                    Rafael Lopes <span>GitHub</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/queirozamq" target="_blank" rel="noopener">
+                    Arthur Queiroz <span>GitHub</span>
+                </a>
+            </li>
+        </ul>
+    </footer>
 
     <script src="script.js"></script>
 </body>
