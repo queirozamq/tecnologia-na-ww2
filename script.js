@@ -48,7 +48,7 @@ const perguntas = [
 ];
 
 const container = document.getElementById("quiz-container");
-let respondidas = {};   // { indiceDaPergunta: indiceDaOpcaoEscolhida }
+let respondidas = {};
 
 function montarQuiz() {
     respondidas = {};
@@ -63,6 +63,7 @@ function montarQuiz() {
 
     const lista = document.getElementById("lista-perguntas");
     const letras = ["A", "B", "C", "D", "E"];
+    const fragmento = document.createDocumentFragment();
 
     perguntas.forEach((p, qi) => {
         const bloco = document.createElement("div");
@@ -87,9 +88,10 @@ function montarQuiz() {
         feedback.id = "feedback-" + qi;
         bloco.appendChild(feedback);
 
-        lista.appendChild(bloco);
+        fragmento.appendChild(bloco);
     });
 
+    lista.appendChild(fragmento);
     atualizarProgresso();
 }
 
@@ -152,10 +154,29 @@ montarQuiz();
 
 
 // =========================================
-// INTERAÇÕES DO SITE
+// INTERAÇÕES E RECURSOS DO SITE
 // =========================================
 
-// 1) Barra de progresso de leitura (topo do cabeçalho)
+// 1) Menu Mobile Hambúrguer
+const btnMenuMobile = document.getElementById("btn-menu-mobile");
+const menuPrincipal = document.getElementById("menu-principal");
+
+btnMenuMobile.addEventListener("click", () => {
+    const aberto = menuPrincipal.classList.toggle("aberto");
+    btnMenuMobile.classList.toggle("ativo", aberto);
+    btnMenuMobile.setAttribute("aria-expanded", aberto);
+});
+
+// Fechar menu mobile ao clicar em um link
+menuPrincipal.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuPrincipal.classList.remove("aberto");
+        btnMenuMobile.classList.remove("ativo");
+        btnMenuMobile.setAttribute("aria-expanded", "false");
+    });
+});
+
+// 2) Barra de progresso de leitura
 const barraLeitura = document.getElementById("progresso-leitura");
 function atualizarLeitura() {
     const total = document.documentElement.scrollHeight - window.innerHeight;
@@ -165,7 +186,7 @@ function atualizarLeitura() {
 window.addEventListener("scroll", atualizarLeitura, { passive: true });
 atualizarLeitura();
 
-// 2) Link ativo no menu conforme a seção visível
+// 3) Link ativo no menu conforme seção visível
 const linksMenu = document.querySelectorAll(".menu a");
 const secoes = [...linksMenu].map(a => document.querySelector(a.getAttribute("href"))).filter(Boolean);
 const observador = new IntersectionObserver(entradas => {
@@ -176,7 +197,7 @@ const observador = new IntersectionObserver(entradas => {
 }, { rootMargin: "-45% 0px -50% 0px" });
 secoes.forEach(sec => observador.observe(sec));
 
-// 3) Resumo do hero: expandir / recolher
+// 4) Resumo do hero: expandir / recolher
 const resumoHero = document.getElementById("resumo-hero");
 const btnResumo = document.getElementById("btn-resumo");
 btnResumo.addEventListener("click", () => {
@@ -185,7 +206,7 @@ btnResumo.addEventListener("click", () => {
     btnResumo.setAttribute("aria-expanded", aberto);
 });
 
-// 4) Linha do tempo: abre a seção do artigo ao clicar no marco
+// 5) Linha do tempo: abre seção do artigo ao clicar no marco
 document.querySelectorAll(".tl a").forEach(link => {
     link.addEventListener("click", () => {
         const alvo = document.querySelector(link.getAttribute("href"));
@@ -193,7 +214,7 @@ document.querySelectorAll(".tl a").forEach(link => {
     });
 });
 
-// 5) Abrir / fechar todas as seções do artigo
+// 6) Abrir / fechar todas as seções do artigo
 const secoesArtigo = document.querySelectorAll(".secao-artigo");
 const btnTudo = document.getElementById("btn-abrir-tudo");
 function atualizarBotaoTudo() {
@@ -208,11 +229,93 @@ btnTudo.addEventListener("click", () => {
 secoesArtigo.forEach(d => d.addEventListener("toggle", atualizarBotaoTudo));
 atualizarBotaoTudo();
 
-// 6) Mede a altura real do cabeçalho (muda no celular, quando o menu quebra linha)
+// 7) Calculadora de tempo estimado de leitura
+function calcularTempoLeitura() {
+    const textoArtigo = document.getElementById("artigo").innerText;
+    const palavras = textoArtigo.trim().split(/\s+/).length;
+    const minutos = Math.ceil(palavras / 200); // Média de 200 palavras por minuto
+    document.getElementById("tempo-leitura").textContent = `⏱ Tempo estimado de leitura: ~${minutos} min (${palavras} palavras)`;
+}
+calcularTempoLeitura();
+
+// 8) Sistema de Feedback (Avaliação por Estrelas + localStorage)
+let avaliacaoSelecionada = 0;
+const estrelas = document.querySelectorAll(".estrela");
+const formFeedback = document.getElementById("form-feedback");
+const containerFeedbacksSalvos = document.getElementById("lista-feedbacks-salvos");
+
+estrelas.forEach(estrela => {
+    estrela.addEventListener("click", () => {
+        avaliacaoSelecionada = parseInt(estrela.getAttribute("data-valor"), 10);
+        atualizarEstrelasVisual();
+    });
+});
+
+function atualizarEstrelasVisual() {
+    estrelas.forEach(estrela => {
+        const val = parseInt(estrela.getAttribute("data-valor"), 10);
+        estrela.classList.toggle("ativa", val <= avaliacaoSelecionada);
+    });
+}
+
+function carregarFeedbacksSalvos() {
+    const salvos = JSON.parse(localStorage.getItem("feedbacks_ww2") || "[]");
+    if (salvos.length === 0) return;
+    
+    containerFeedbacksSalvos.innerHTML = `<h3>Avaliações recentes enviadas:</h3>` + salvos.map(f => `
+        <div class="item-feedback-salvo">
+            <header>
+                <strong>${f.nome}</strong>
+                <span>${"★".repeat(f.avaliacao)}${"☆".repeat(5 - f.avaliacao)}</span>
+            </header>
+            <p>${f.mensagem}</p>
+        </div>
+    `).join("");
+}
+
+formFeedback.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nome = document.getElementById("nome-feedback").value.trim() || "Anônimo";
+    const mensagem = document.getElementById("mensagem-feedback").value.trim();
+
+    if (!mensagem) return;
+
+    const novoFeedback = {
+        nome,
+        mensagem,
+        avaliacao: avaliacaoSelecionada || 5,
+        data: new Date().toLocaleDateString("pt-BR")
+    };
+
+    const salvos = JSON.parse(localStorage.getItem("feedbacks_ww2") || "[]");
+    salvos.unshift(novoFeedback);
+    localStorage.setItem("feedbacks_ww2", JSON.stringify(salvos));
+
+    formFeedback.reset();
+    avaliacaoSelecionada = 0;
+    atualizarEstrelasVisual();
+
+    const avisoSucesso = document.getElementById("feedback-mensagem-sucesso");
+    avisoSucesso.hidden = false;
+    setTimeout(() => { avisoSucesso.hidden = true; }, 4000);
+
+    carregarFeedbacksSalvos();
+});
+
+carregarFeedbacksSalvos();
+
+// 9) Medição otimizada da altura do cabeçalho com Debounce
 const cabecalho = document.querySelector("header");
 function medirCabecalho() {
-    document.documentElement.style.setProperty("--header-h", cabecalho.offsetHeight + "px");
+    if (cabecalho) {
+        document.documentElement.style.setProperty("--header-h", cabecalho.offsetHeight + "px");
+    }
 }
-window.addEventListener("resize", medirCabecalho);
+
+let timeoutResize;
+window.addEventListener("resize", () => {
+    clearTimeout(timeoutResize);
+    timeoutResize = setTimeout(medirCabecalho, 100);
+});
 window.addEventListener("load", medirCabecalho);
 medirCabecalho();
